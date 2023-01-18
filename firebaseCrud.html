@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase CRUD</title>
+    <style>
+        #email {
+    border-radius: 0;
+} 
+
+body, h1, h2 {
+    margin:0;
+    padding:0;
+   }
+   body {
+    background:#c3f7e3;
+    font-family: Arial, sans-serif;
+   }
+   h1 {
+    padding:10px;
+    background:#fdf0bd;
+   } 
+   li {
+       color: #e1e1e1;
+   }
+   
+   /*---------------------------*/
+   /* Read Users */
+   /*---------------------------*/
+   #user-list {
+    margin:0;
+    padding:0;
+    width: fit-content;
+    float:left;
+    margin:10px;
+    border:1px solid #4fc3fc;
+   }
+   
+   #user-list h2 {
+    padding:10px;
+    margin:0;
+    color:white;
+   }
+   
+   #user-list li {
+    padding:5px 10px;
+    border-top:1px solid #4fc3fc;
+    cursor: pointer;
+    color:black;
+    font-style: italic;
+    list-style: none 
+   }
+   
+   #user-list li:hover {
+    background: #4fc3fc;
+   }
+   
+   #userDetail {
+    float: left;
+    width: 200px;
+    margin: 10px;
+    margin-left: 0;
+    padding: 10px;
+    border: 1px solid #4fc3fc;
+    color: white;
+}
+   
+   /* Add User Module */
+   #add-user-module {
+       width:30px;
+       margin-bottom: 1px;
+       margin-left: 10px;
+       margin-top:10px;
+   }
+   
+   #add-user-module #open-add-user-form-btn {
+       background: #54bb7d;
+       font-size: 1.5em;
+       color: white;
+       padding-bottom: 5px;
+   }
+   
+   #add-user-module form {
+       position: absolute;
+       padding: 10px;
+       width: 150px;
+       background-color: #e1e1e1;
+       border: 1px solid #999;
+       display: none;
+   }
+   
+   #add-user-module form input {
+       width: 97%;
+       margin: 2px 0;
+   }
+   
+   #add-user-module form button {
+       background: #54bb7d;
+       font-size: 1em;
+       padding: 0px 10px;
+       color: white;
+       margin-top: 10px;
+   }
+   
+   
+   #add-user-module:hover form {
+       display: block;
+   }
+   
+   
+   /*Edit*/
+   #edit-user-module {
+       display: none;
+       position: absolute;
+       background-color: #e1e1e1;
+       border: 1px solid #999;
+       top:149px;
+       left: 160px;
+       padding: 10px;
+       width: 150px;
+   }
+   
+   #user-list li:hover~#edit-user-module {
+       display: none;
+   }
+   
+   
+   #edit-user-module form button {
+       background: #54bb7d;
+       font-size: 1em;
+       padding: 0px 10px;
+       color: white;
+       margin-top: 10px;
+   }
+
+    </style>
+</head>
+<body>
+    
+    <h1>FB CRUD</h1>
+    <!-- add user module -->
+    <section id="add-user-module" >
+        <button id="open-add-user-form-btn">+</button>
+        
+        <form id="leFormulaireAjout">
+            <h2>Add User</h2>
+            name:<br>
+            <input type='text' data-key='name' class='user-input'><br>
+            age:<br>
+            <input type='text' data-key='age' class='user-input'><br>
+            email:<br>
+            <input type='text' data-key='email' class='user-input'><br>
+            <button type='button' id="add-user-btn">add user</button>
+        </form>
+    </section>
+
+    <!-- edit user module -->
+    <section id="edit-user-module">
+        <form>
+            <h2>Edit user</h2>
+            <!-- ICI J'AI MON INPTU CACHé qui contiendra l'id de l'utilisateur -->
+            <input type="text" class="edit-userid" hidden>
+            name:<br>
+            <input type='text' data-key='name' class='edit-user-input'><br>
+            age:<br>
+            <input type='text' data-key='age' class='edit-user-input'><br>
+            email:<br>
+            <input type='text' data-key='email' class='edit-user-input'><br>
+            <button type='button' id="edit-user-btn">save</button>
+        </form>
+    </section>
+
+    <!-- show user module -->
+    <ul id="user-list">
+    
+    <!-- ON REMPLI à la lecture de la BDD -->
+    </ul>
+        <!-- ON REMPLI quand on click sur un user -->
+    <div id="user-detail">
+
+    </div>
+        <!-- firebase sdk link goes here -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+        <script src="fb.js"></script>
+</body>
+</html>
